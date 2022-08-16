@@ -51,7 +51,7 @@ function convertMs(ms) {
     return { days, hours, minutes, seconds };
 };
 /*Принимает число, приводик к строке и добавляет вначало если число меньше 2-х знаков*/
-function pad(value) {
+function addLeadingZero(value) {
     return String(value).padStart(2, '0');
 };
 refs.btnStart.addEventListener('click', onStartTime);
@@ -61,10 +61,10 @@ refs.btnStart.addEventListener('click', onStartTime);
         const deltaTime = new Date(refs.inputDate.value) - new Date();
         refs.btnStart.disabled = true; 
         const startTime = convertMs(deltaTime);
-        refs.days.textContent = pad(startTime.days);
-        refs.hours.textContent = pad(startTime.hours);
-        refs.minutes.textContent = pad(startTime.minutes);
-        refs.seconds.textContent = pad(startTime.seconds);
+        refs.days.textContent = addLeadingZero(startTime.days);
+        refs.hours.textContent = addLeadingZero(startTime.hours);
+        refs.minutes.textContent = addLeadingZero(startTime.minutes);
+        refs.seconds.textContent = addLeadingZero(startTime.seconds);
         
         
     }, 1000);
