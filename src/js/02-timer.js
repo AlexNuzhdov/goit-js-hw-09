@@ -55,53 +55,24 @@ function addLeadingZero(value) {
     return String(value).padStart(2, '0');
 };
 refs.btnStart.addEventListener('click', onStartTime);
+let timerId = null;
   
     function onStartTime (){
-    refs.timerHtml = setInterval(() => {
+    refs.btnStart.disabled = true; 
+    timerId = setInterval(() => {
         const deltaTime = new Date(refs.inputDate.value) - new Date();
-        refs.btnStart.disabled = true; 
         const startTime = convertMs(deltaTime);
         refs.days.textContent = addLeadingZero(startTime.days);
         refs.hours.textContent = addLeadingZero(startTime.hours);
         refs.minutes.textContent = addLeadingZero(startTime.minutes);
         refs.seconds.textContent = addLeadingZero(startTime.seconds);
+        if (deltaTime < 1000) {
+          clearInterval(timerId);
+          Notiflix.Notify.failure('timer is over');
+          btnStart.disabled = false;
+        }
+        
         
         
     }, 1000);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
